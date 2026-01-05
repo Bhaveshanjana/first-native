@@ -1,28 +1,23 @@
+import { createHomeStyles } from "@/assets/styles/home.style";
 import useTheme from "@/hooks/useTheme";
-import { Link } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StatusBar, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
+import Header from "@/components/Header";
 
 export default function Index() {
-  const { toggleDarkMode } = useTheme()
+  const { toggleDarkMode, colors } = useTheme();
+  const HomeStyles = createHomeStyles(colors);
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>This is first mobile app.</Text>
-      <TouchableOpacity onPress={toggleDarkMode}>
-        <Text className="">Switch mode</Text>
-      </TouchableOpacity>
-    </View>
+    <LinearGradient colors={colors.gradients.background} style={HomeStyles.container}>
+      <StatusBar barStyle={colors.statusBarStyle} />
+      <SafeAreaView style={HomeStyles.safeArea}>
+        <TouchableOpacity onPress={toggleDarkMode}>
+          <Text className="">Switch mode</Text>
+        </TouchableOpacity>
+        <Header />
+      </SafeAreaView>
+    </LinearGradient>
   );
 }
-const style = StyleSheet.create({
-  Link: {
-    color: "black",
-    backgroundColor: "red",
-    marginTop: 12
-  }
-})
+

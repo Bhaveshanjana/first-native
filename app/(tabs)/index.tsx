@@ -199,9 +199,6 @@ export default function Index() {
     >
       <StatusBar barStyle={colors.statusBarStyle} />
       <SafeAreaView style={HomeStyles.safeArea}>
-        <TouchableOpacity onPress={toggleDarkMode}>
-          <Text className="">Switch mode</Text>
-        </TouchableOpacity>
         <Header />
         <TodoInput />
         <FlatList
